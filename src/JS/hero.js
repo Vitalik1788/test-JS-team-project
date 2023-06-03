@@ -2,7 +2,7 @@ const API_KEY = '58fde9f9a3392c3dbee86a1f2142354e';
 const RANDOM_NUMBER = Math.floor(Math.random() * (19 - 0 + 1)) + 0;
 const axios = require('axios').default;
 
-refs = {
+const refs = {
   heroDiv: document.getElementById('hero-div'),
   heroTitle: document.getElementById('hero-title'),
   heroOverview: document.getElementById('hero-overview'),
