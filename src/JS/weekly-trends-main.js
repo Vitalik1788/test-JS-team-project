@@ -1,7 +1,8 @@
 import axios from 'axios';
 import './weekly-trends-markup.js';
 import { createMarkup } from './weekly-trends-markup.js';
-refs = {
+
+const refs = {
   trendsList: document.querySelector('.cards-list'),
 };
 
