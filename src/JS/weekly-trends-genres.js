@@ -1,26 +1,24 @@
 import { onError } from './weekly-trends-main';
 import axios from 'axios';
-
-async function getGenres() {
+export async function getGenres() {
   try {
     const genres = await axios.get(
       'https://api.themoviedb.org/3/genre/movie/list?api_key=41b8f9437bf3f899281f8a3f9bdc0891'
     );
+    localStorage.setItem('genres', JSON.stringify(genres.data.genres)); // Зберегти масив у localStorage
     return genres;
   } catch (error) {
     onError(error);
   }
 }
 
-export async function validateGenres(genresArray) {
+export async function validateGenres(genresArray, genresData) {
   try {
-    const { data } = await getGenres();
-    const allGenres = Array.from(data.genres);
+    const allGenres = Array.from(genresData);
     const genresNames = genresArray.map(genreId => {
       const genre = allGenres.find(genre => genre.id === genreId);
       return genre ? genre.name : '';
     });
-    //console.log(genresNames);
     let genresString = '';
     if (genresNames.length > 2) {
       genresString = genresNames.slice(0, 2).join(', ') + ' and other';
