@@ -1,1 +1,3 @@
 import './JS/hero.js';
+import { showWeeklyTrends } from './JS/weekly-trends-main.js';
+window.addEventListener('load', showWeeklyTrends);
