@@ -91,14 +91,25 @@
 }
 
 .css-btn-trailer {
-  border: #FFFFFF;
-  background-color: yellow;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 12px 24px;
+gap: 10px;
+background: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
+border-radius: 74px; 
 }
 
 .css-bnt-info {
-  border: solid #FFFFFF;
-  background-color: transparent;
-  color: white;
+  display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 12px 24px;
+gap: 10px;
+border: 1px solid #FFFFFF;
+border-radius: 74px;
+background: black;
+color: #FFFFFF;
 }
 
 /*----HERO END------*/
