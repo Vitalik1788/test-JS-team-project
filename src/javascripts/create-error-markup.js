@@ -1,4 +1,4 @@
-import { refs } from './refs';
+import { refs } from '../JS/catalog/components/refs';
 
 let errorMarkupCreated = false;
 
