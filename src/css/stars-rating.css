@@ -1,11 +1,18 @@
+/* ! Підключити до стилів кожної сторінки, де є зірковий рейтинг */
+
 .star-template--hidden {
   width: 0;
   height: 0;
 }
 
 .stars-container {
-  width: 110px;
-  height: 16px;
+  min-width: 110px;
+  /* height: 16px; */
+}
+
+.stars-container--hero {
+  min-width: 135px;
+  /* height: 21px; */
 }
 
 .stars-absent {
@@ -19,13 +26,16 @@
 
 .stars-list {
   display: flex;
-  gap: 5px;
+  gap: 4px;
 
-  width: calc(18px * 5 + 5px * 4);
+  width: calc(18px * 5 + 4px * 4);
   margin-block: 0;
   padding-left: 0;
+}
 
-  /* background-color: #3418b2; */
+.stars-list--hero {
+  gap: 5px;
+  width: calc(23px * 5 + 5px * 4);
 }
 
 .stars-list__item {
@@ -36,4 +46,9 @@
   display: block;
   width: 18px;
   height: 16px;
+}
+
+.stars-list__img--hero {
+  width: 23px;
+  height: 21px;
 }
