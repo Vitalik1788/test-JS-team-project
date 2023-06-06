@@ -5,7 +5,10 @@
 @import './weekly-trands.css';
 @import './upcoming.css';
 @import './footer.css';
+
 @import './stars-rating.css';
+@import './movie-modal.css';
+
 
 .main-container {
   padding-left: 20px;
