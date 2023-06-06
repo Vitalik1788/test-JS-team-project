@@ -2,7 +2,7 @@ import { refs } from '../JS/catalog/components/refs';
 
 let errorMarkupCreated = false;
 
-export function createErrorMarkup() {
+export const createErrorMarkup = () => {
   if (errorMarkupCreated) {
     return; // Если функция уже вызвана, выходим из неё
   }
@@ -21,4 +21,4 @@ export function createErrorMarkup() {
   refs.paginationContainer.classList.add('is-hidden');
 
   errorMarkupCreated = true;
-}
+};
