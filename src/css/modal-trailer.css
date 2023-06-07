@@ -12,6 +12,7 @@
 
   .modal-content {
     margin: 15% auto;
+    height: auto;
     max-width: 600px;
     background-color: #111111;
     box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
