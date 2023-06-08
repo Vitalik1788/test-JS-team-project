@@ -28,9 +28,9 @@ function getLibrarylistInParts(library) {
   const totalLiberyLength = library.length;
   const libraryInParts = library.slice(firstEl, lostEl);
   if (totalLiberyLength - totalElementInList <= 6) {
-    createLibraryMarkup(libraryInParts);
+    onCreateLibraryMarkup(libraryInParts);
   } else {
-    createLibraryMarkup(libraryInParts);
+    onCreateLibraryMarkup(libraryInParts);
     libraryRef.insertAdjacentHTML(
       'afterend',
       ` <div class="lib-btn-cont"><button class="btn btn-search-movie" type="button">Load more</button></div>`
