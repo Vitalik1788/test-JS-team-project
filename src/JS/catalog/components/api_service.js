@@ -1,8 +1,6 @@
-import { API_KEY } from '../../../fetch/api_key';
-
 export default class ApiService {
   static BASE_URL = 'https://api.themoviedb.org/3';
-  static API_KEY = API_KEY;
+  static API_KEY = '41b8f9437bf3f899281f8a3f9bdc0891';
 
   constructor() {
     this.searchQuery = '';

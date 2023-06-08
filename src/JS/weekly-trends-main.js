@@ -5,8 +5,6 @@ import { getGenres } from './weekly-trends-genres.js';
 const refs = {
   trendsList: document.querySelector('.cards-list'),
 };
-window.addEventListener('load', showWeeklyTrends);
-
 //getGenres();
 export function showWeeklyTrends() {
   const screenWidth = window.innerWidth;
@@ -15,7 +13,7 @@ export function showWeeklyTrends() {
   getTrendyFilms().then(({ data }) => {
     const films = data.results.slice(0, numMovies);
 
-    createMarkup(films);
+    createMarkup(films)
     // .then(() => {
     //   console.log(data);
     // });
