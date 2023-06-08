@@ -1,6 +1,6 @@
-import './JS/header.js';
-import './JS/hero.js';
-import './JS/catalog.js';
-import './JS/modal-trailer.js';
-import './JS/global-listener.js';
+import './javascripts/header';
+import './javascripts/hero';
+import './javascripts/catalog';
+import './javascripts/modal-trailer';
+import './javascripts/global-listener';
 

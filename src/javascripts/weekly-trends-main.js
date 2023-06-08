@@ -15,7 +15,7 @@ export function showWeeklyTrends() {
   getTrendyFilms().then(({ data }) => {
     const films = data.results.slice(0, numMovies);
 
-    createMarkup(films)
+    createMarkup(films);
     // .then(() => {
     //   console.log(data);
     // });
