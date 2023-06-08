@@ -5,7 +5,6 @@ import { getGenres } from './weekly-trends-genres.js';
 const refs = {
   trendsList: document.querySelector('.cards-list'),
 };
-
 window.addEventListener('load', showWeeklyTrends);
 
 //getGenres();
