@@ -2,9 +2,9 @@ import { validateGenres } from './weekly-trends-genres';
 import starsRating from './stars-rating';
 import { openModalAboutFilm } from './movieModal';
 
-export function createMarkup(films) {
+export async function createMarkup(films) {
   const markup = films.map(
-    async ({
+    ({
       id,
       poster_path,
       release_date,
@@ -46,7 +46,7 @@ export function createMarkup(films) {
     }
   );
 
-  return Promise.all(markup).then(results => {
+  return await Promise.all(markup).then(results => {
     const finalMarkup = results.join('');
     document
       .querySelector('.cards-list')
