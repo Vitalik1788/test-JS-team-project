@@ -1,0 +1,1 @@
+{"mappings":"oeAAAA,EAAA,S","sources":["src/library-page.js"],"sourcesContent":["import './javascript/header';\nimport './javascript/scroll-up';\nimport './javascript/library/library';\n"],"names":["parcelRequire"],"version":3,"file":"library.30909f35.js.map"}
