@@ -1,11 +1,10 @@
 import API from './api-library';
 import defaultImg from '../../images/default.jpg';
 import { STORAGE_KEY } from '../../fetch/api_key';
-// import { openModalAboutFilm } from '../movieModal';
+import { openModalAboutFilm } from '../movieModal';
 
 const libraryRef = document.querySelector('.library-card-list');
 const btnLib = document.querySelector('.btn');
-// console.log(document.querySelector('.btn'));
 
 window.addEventListener('DOMContentLoaded', () => {
   const library = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -16,27 +15,18 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 btnLib?.addEventListener('click', function (event) {
-  console.log('AAAAAAA');
   getLibrarylistInParts(library);
   firstEl += 6;
   totalElementInList += 6;
 });
-// console.log(btnLib);
 
 let totalElementInList = 0;
 let firstEl = 0;
+let lostEl = firstEl + 6;
+
 function getLibrarylistInParts(library) {
   const totalLiberyLength = library.length;
-  // console.log(totalLiberyLength);
-
-  lostEl = firstEl + 6;
-  // console.log(firstEl);
-  // console.log(lostEl);
-  // console.log(totalLiberyLength);
-  // console.log(totalLiberyLength - totalElementInList);
-
   const libraryInParts = library.slice(firstEl, lostEl);
-  // console.log(libraryInParts);
   if (totalLiberyLength - totalElementInList <= 6) {
     createLibraryMarkup(libraryInParts);
   } else {
@@ -50,12 +40,8 @@ function getLibrarylistInParts(library) {
 
 export function handleFilm(e) {
   const id = e.target.dataset.id;
-  // console.log('btnLib', btnLib);
-  // console.log(e.target);
 
   if (e.target.hasAttribute('data-add')) {
-    console.log('data-add');
-
     // btnLib.removeAttribute('data-add');
     // btnLib.setAttribute('data-remove', '');
     // btnLib.textContent = 'Remove from my library';
@@ -127,15 +113,16 @@ export function deleteCardLibrary(id) {
 }
 
 function createLibraryMarkup(libraryInParts) {
-  // console.log(library);
+  const errorText = '';
   if (libraryInParts.length === 0) {
-    libraryRef.innerHTML = `<div class="library-info library-info-container">
+    const errorMarkup = `<div class="library-info library-info-container">
                               <p class="library-info-text">
                                 OOPS... <br> We are very sorry!<br>
                                 You don’t have any movies at your library.
                               </p>
                               <button class="btn btn-search-movie" type="button">Search movie</button>
                             </div>`;
+    libraryRef.innerHTML = errorMarkup;
   } else {
     const markup = libraryInParts
       .map(movie => {
@@ -147,7 +134,7 @@ function createLibraryMarkup(libraryInParts) {
               <img class="film-poster" src="${imageSrc}" alt="${
           movie.original_title
         }" />
-              <div class="overlay">
+              <div class="overlay watch-more-details" data-id="${movie.id}">
                 <div class="film-info">
                   <p class="film-title">${
                     movie.original_title || movie.name
@@ -166,14 +153,18 @@ function createLibraryMarkup(libraryInParts) {
             </li>`;
       })
       .join('');
-
     libraryRef.innerHTML = markup;
   }
 }
 
-// const filmList = document.querySelector('.lib-btn-cont');
-// filmList.addEventListener('click', event => {
-//   const li = event.target.closest('.btn');
-//   // const movieId = li.getAttribute('data-id');
-//   // openModalAboutFilm(movieId);
-// });
+window.addEventListener('DOMContentLoaded', () => {
+  const watchAddedCard = document.querySelector('.library-card-list');
+  watchAddedCard.addEventListener('click', function (e) {
+    let targetItem = e.target;
+    const currentButton = targetItem.closest('.watch-more-details');
+    if (currentButton) {
+      const movieId = currentButton.getAttribute('data-id');
+      openModalAboutFilm(movieId);
+    }
+  });
+});

@@ -17,7 +17,7 @@ export async function createMovieCard(data) {
         <img class="film-poster" src="${imageSrc}" alt="${
       movie.original_title || movie.name
     }" />
-        <div class="overlay">
+        <div class="overlay-card">
           <div class="film-info">
             <p class="film-title">${movie.original_title || movie.name}</p>
             <div class="film-details">

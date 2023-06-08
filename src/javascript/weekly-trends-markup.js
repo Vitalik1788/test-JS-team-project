@@ -60,5 +60,5 @@ export function createMarkup(films) {
       const movieId = li.getAttribute('data-id');
       openModalAboutFilm(movieId);
     });
-  });
-}
+  })
+};
