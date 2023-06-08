@@ -1,6 +1,5 @@
 import { roundToTen, findFilmAtStorage } from './helpers';
-import { STORAGE_KEY } from '../fetch/api_key';
-// const STORAGE_KEY = 'my_film'; // should be localStorage key
+const STORAGE_KEY = 'my_film'; // should be localStorage key
 
 export function careateUpcomingMarkup(film) {
   const {
@@ -19,8 +18,6 @@ export function careateUpcomingMarkup(film) {
   // localStorage.setItem('my_film', JSON.stringify([film]));
 
   const isSaved = findFilmAtStorage(STORAGE_KEY, id);
-  console.log('myIsSaved', isSaved);
-
   const btnAttribute = isSaved ? 'remove' : 'add';
   //
   const imgPath = window.screen.width < 768 ? poster_path : backdrop_path;

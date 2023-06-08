@@ -17,6 +17,7 @@ window.addEventListener('load', heroInfoShow);
 
 function heroInfoShow() {
   getFilmInfo().then(({ data }) => {
+    console.log(data);
 
     // Змінні усієї інформації фільму
     const filmInfo = data.results[RANDOM_NUMBER];
@@ -55,7 +56,7 @@ async function getFilmInfo() {
 
 //базова розмітка при успішному запиту
 function createHeroMarkUp(picturePath, filmName, filmDescription) {
-  refs.heroDiv.style.backgroundImage = `linear-gradient(79.39deg, #111111 32.37%, rgba(17, 17, 17, 0) 72.02%), 
+  refs.heroDiv.style.backgroundImage = `linear-gradient(79.39deg, #111111 32.37%, rgba(17, 17, 17, 0) 42.02%), 
   url(${picturePath})`;
   refs.heroTitle.textContent = `${filmName}`;
   refs.heroOverview.textContent = `${filmDescription}`;
