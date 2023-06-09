@@ -1,5 +1,4 @@
-/** @format */
-// Mobile-menu
+
 const mobileMenuButton = document.getElementById('menu');
 const menuNav = document.querySelector('nav');
 const overlay = document.getElementById('overlay');
