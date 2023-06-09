@@ -2,9 +2,9 @@ import { validateGenres } from './weekly-trends-genres';
 import starsRating from './stars-rating';
 import { openModalAboutFilm } from './movieModal';
 
-export async function createMarkup(films) {
+export function createMarkup(films) {
   const markup = films.map(
-    ({
+    async ({
       id,
       poster_path,
       release_date,
@@ -46,7 +46,7 @@ export async function createMarkup(films) {
     }
   );
 
-  return await Promise.all(markup).then(results => {
+  return Promise.all(markup).then(results => {
     const finalMarkup = results.join('');
     document
       .querySelector('.cards-list')
@@ -60,5 +60,5 @@ export async function createMarkup(films) {
       const movieId = li.getAttribute('data-id');
       openModalAboutFilm(movieId);
     });
-  })
-};
+  });
+}
