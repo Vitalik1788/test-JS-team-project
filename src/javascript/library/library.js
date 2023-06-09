@@ -1,5 +1,5 @@
 import API from './api-library';
-import defaultImg from '../../images/default.jpg';
+import defaultImgCard from '../../images/default.jpg';
 import starsRating from '../../javascript/stars-rating';
 import { STORAGE_KEY } from '../../fetch/api_key';
 import { validateGenres } from '../weekly-trends-genres';
@@ -118,7 +118,7 @@ async function createLibraryMarkup(libraryInParts) {
     const markup = libraryInParts.map(movie => {
       const imageSrc = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : `${defaultImg}`;
+        : `${defaultImgCard}`;
 
       return `<li class="card-item item" data-id="${movie.id}">
               <img class="film-poster" src="${imageSrc}" alt="${
