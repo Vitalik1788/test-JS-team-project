@@ -1,8 +1,8 @@
 import MovieDetailProviver from './movieDetailProvider.js';
-import { roundToTen, findFilmAtStorage } from '../upcoming/helpers.js';
 import { handleFilm } from './library/library.js';
 import { API_KEY, STORAGE_KEY } from '../fetch/api_key';
 import defaultImg from '../images/default.jpg';
+const imgtest = defaultImg;
 
 // const STORAGE_KEY = 'my_film';
 const movieDetailProviver = new MovieDetailProviver(API_KEY);
@@ -55,7 +55,7 @@ export class MovieModal {
   refreshData(data) {
     this.refs.posterPath.src = data.poster_path
       ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-      : `${defaultImg}`;
+      : `${imgtest}`;
     this.refs.title.textContent = `${data.title}`;
     this.refs.voteAverage.textContent = `${roundToTen(data.vote_average)}`;
     this.refs.voteCount.textContent = `${data.vote_count}`;
