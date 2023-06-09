@@ -7,17 +7,14 @@ import { openModalAboutFilm } from '../movieModal';
 
 const libraryRef = document.querySelector('.library');
 const btnLib = document.getElementById('loadMore');
+const filmList = document.querySelector('.listListener');
 
 const library = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 window.addEventListener('DOMContentLoaded', () => {
-  // if(libraryRef) createLibraryMarkup(library);
-  let totalElementInList = 0;
-  let firstEl = 0;
   getLibrarylistInParts(library);
 });
 
 btnLib?.addEventListener('click', onLoadMoreClick);
-
 function onLoadMoreClick() {
   firstEl += 9;
   totalElementInList += 9;
@@ -43,14 +40,9 @@ export function handleFilm(e) {
   const id = e.target.dataset.id;
 
   if (e.target.hasAttribute('data-add')) {
-    // btnLib.removeAttribute('data-add');
-    // btnLib.setAttribute('data-remove', '');
-    // btnLib.textContent = 'Remove from my library';
     setBtnProp(e.target, addOps);
 
     addFilmToLibrary(id);
-
-    //
   } else if (e.target.hasAttribute('data-remove')) {
     e.target.removeAttribute('data-remove');
     e.target.setAttribute('data-add', '');
@@ -74,16 +66,10 @@ function setBtnProp(el, props) {
   el.textContent = btnText;
 }
 
-/////// ПРОВЕРКА НАЛИЧИЯ ID В LOCAL STORAGE /////////
-
-/////// ПОЛУЧЕНИЯ ОТ СЕРВЕРА ФИЛЬМА ПО ID ///////
-
 async function getMovieById(id) {
   const responce = await API.getMoviById(id);
   return responce.data;
 }
-
-///// ФУНКЦИЯ ДОБАВЛЕНИЯ В LOCAL STORAGE ///////
 
 export async function addFilmToLibrary(id) {
   const libraryList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -95,8 +81,6 @@ export async function addFilmToLibrary(id) {
   libraryList.push(movieObj);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(libraryList));
 }
-
-///// ФНКЦИЯ УДАЛЕНИЯ ИЗ LOCAL STORAGE ///////
 
 export function deleteCardLibrary(id) {
   const libraryList = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -116,8 +100,7 @@ export function deleteCardLibrary(id) {
 
 async function createLibraryMarkup(libraryInParts) {
   const genresData = JSON.parse(localStorage.getItem('genres'));
-
-  if (libraryInParts.length === 0) {
+  if (libraryRef && libraryInParts.length === 0) {
     libraryRef.innerHTML = `<div class="library-info library-info-container">
                               <p class="library-info-text">
                                 OOPS... <br> We are very sorry!<br>
@@ -132,16 +115,15 @@ async function createLibraryMarkup(libraryInParts) {
     const genresPromise = validateGenres(genreIds, genresData);
     const genres = await genresPromise;
 
-    const markup = await Promise.all(
-      libraryInParts.map(async movie => {
-        const imageSrc = movie.poster_path
-          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-          : `${defaultImg}`;
+    const markup = libraryInParts.map(movie => {
+      const imageSrc = movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : `${defaultImg}`;
 
-        return `<li class="card-item item" data-id="${movie.id}">
+      return `<li class="card-item item" data-id="${movie.id}">
               <img class="film-poster" src="${imageSrc}" alt="${
-          movie.original_title
-        }" />
+        movie.original_title
+      }" />
               <div class="overlay">
                 <div class="film-info">
                   <p class="film-title">${
@@ -149,9 +131,9 @@ async function createLibraryMarkup(libraryInParts) {
                   }</p>
                   <div class="film-details">
                     <span class="film-description">${genres} | ${
-          new Date(movie.release_date).getFullYear() ||
-          new Date(movie.first_air_date).getFullYear()
-        }</span>
+        new Date(movie.release_date).getFullYear() ||
+        new Date(movie.first_air_date).getFullYear()
+      }</span>
                     <div class="stars-container">${starsRating({
                       voteAverage: movie.vote_average,
                       isHero: false,
@@ -160,18 +142,14 @@ async function createLibraryMarkup(libraryInParts) {
                 </div>
               </div>
             </li>`;
-      })
-    );
-
-    // libraryRef.innerHTML += markup.join('');
-    libraryRef.insertAdjacentHTML('beforeend', markup.join(''));
-
-    const filmList = document.querySelector('.listListener');
-
-    filmList.addEventListener('click', event => {
-      const li = event.target.closest('.card-item');
-      const movieId = li.getAttribute('data-id');
-      openModalAboutFilm(movieId);
     });
+
+    if (libraryRef) libraryRef.insertAdjacentHTML('beforeend', markup.join(''));
   }
 }
+
+filmList.addEventListener('click', event => {
+  const li = event.target.closest('.card-item');
+  const movieId = li.getAttribute('data-id');
+  openModalAboutFilm(movieId);
+});
