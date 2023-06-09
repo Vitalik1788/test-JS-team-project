@@ -9,7 +9,7 @@ const imgDefaul = defaultImg;
 export async function createMovieCard(data) {
   const genresData = JSON.parse(localStorage.getItem('genres'));
 
-  const markupPromises = data.results.map(async data => {
+  const markupPromises = data.results.map(data => {
     const {
       poster_path,
       id,
@@ -24,7 +24,6 @@ export async function createMovieCard(data) {
       ? `https://image.tmdb.org/t/p/w500${poster_path}`
       : `${imgDefaul}`;
     const genres = validateGenres(genre_ids, genresData);
-    // const genres = await genresPromise;
     return `<li class="card-item" data-id="${id}">
         <img class="film-poster" src="${imageSrc}" alt="${
       original_title || original_name
@@ -48,14 +47,11 @@ export async function createMovieCard(data) {
   });
 
   const markup = await Promise.all(markupPromises);
-
-  refs.catalogList.innerHTML = markup.join('');
-
-  const filmList = document.querySelector('.listListener');
-
-  filmList.addEventListener('click', event => {
+  refs.catalogList.innerHTML = markup.join(''); 
+}
+const filmList = document.querySelector('.listListener');
+filmList.addEventListener('click', event => {
     const li = event.target.closest('.card-item');
     const movieId = li.getAttribute('data-id');
     openModalAboutFilm(movieId);
   });
-}
