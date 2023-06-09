@@ -4,6 +4,8 @@ import starsRating from './stars-rating';
 import { validateGenres } from './weekly-trends-genres';
 import { openModalAboutFilm } from './movieModal';
 
+const imgDefaul = defaultImg;
+
 export async function createMovieCard(data) {
   const genresData = JSON.parse(localStorage.getItem('genres'));
 
@@ -20,7 +22,7 @@ export async function createMovieCard(data) {
     } = data;
     const imageSrc = poster_path
       ? `https://image.tmdb.org/t/p/w500${poster_path}`
-      : `${defaultImg}`;
+      : `${imgDefaul}`;
     const genres = validateGenres(genre_ids, genresData);
     // const genres = await genresPromise;
     return `<li class="card-item" data-id="${id}">
