@@ -34,12 +34,6 @@ function heroInfoShow() {
   });
 }
 
-//базовий фетч function getFilmInfo() {
-//   return fetch(
-//     'https://api.themoviedb.org/3/trending/movie/day?api_key=58fde9f9a3392c3dbee86a1f2142354e'
-//   ).then(res => res.json());
-// }
-
 async function getFilmInfo() {
   try {
     const res = await axios.get(
