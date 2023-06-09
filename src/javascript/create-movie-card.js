@@ -39,7 +39,6 @@ export async function createMovieCard(data) {
       voteAverage: vote_average,
       isHero: false,
     })}</div>            
-      <!-- <span class="film-rating">${vote_average.toFixed(1)}</span> -->
             </div>
           </div>
         </div>
