@@ -1,15 +1,13 @@
 import { refs } from './catalog/components/refs';
-import defaultImg from '../images/default-bgimage.jpg';
+import defaultImg from '../images/default.jpg';
 import starsRating from './stars-rating';
 import { validateGenres } from './weekly-trends-genres';
 import { openModalAboutFilm } from './movieModal';
 
-const imgDefaul = defaultImg;
-
-export function createMovieCard(data) {
+export async function createMovieCard(data) {
   const genresData = JSON.parse(localStorage.getItem('genres'));
 
-  const markupPromises = data.results.map(data => {
+  const markupPromises = data.results.map(async data => {
     const {
       poster_path,
       id,
@@ -22,8 +20,9 @@ export function createMovieCard(data) {
     } = data;
     const imageSrc = poster_path
       ? `https://image.tmdb.org/t/p/w500${poster_path}`
-      : `${imgDefaul}`;
+      : `${defaultImg}`;
     const genres = validateGenres(genre_ids, genresData);
+    // const genres = await genresPromise;
     return `<li class="card-item" data-id="${id}">
         <img class="film-poster" src="${imageSrc}" alt="${
       original_title || original_name
@@ -40,18 +39,22 @@ export function createMovieCard(data) {
       voteAverage: vote_average,
       isHero: false,
     })}</div>            
+      <!-- <span class="film-rating">${vote_average.toFixed(1)}</span> -->
             </div>
           </div>
         </div>
       </li>`;
   });
 
-  const markup = Promise.all(markupPromises);
-  refs.catalogList.innerHTML = markup.join(''); 
-}
-const filmList = document.querySelector('.listListener');
-filmList.addEventListener('click', event => {
+  const markup = await Promise.all(markupPromises);
+
+  refs.catalogList.innerHTML = markup.join('');
+
+  const filmList = document.querySelector('.listListener');
+
+  filmList.addEventListener('click', event => {
     const li = event.target.closest('.card-item');
     const movieId = li.getAttribute('data-id');
     openModalAboutFilm(movieId);
   });
+}

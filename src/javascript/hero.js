@@ -1,4 +1,5 @@
 import starsRating from './stars-rating';
+import { getMovieId } from './modal-trailer';
 
 const API_KEY = '58fde9f9a3392c3dbee86a1f2142354e';
 const RANDOM_NUMBER = Math.floor(Math.random() * (19 - 0 + 1)) + 0;
@@ -33,6 +34,12 @@ function heroInfoShow() {
     starsRating({ voteAverage: filmRating, isHero: true });
   });
 }
+
+//базовий фетч function getFilmInfo() {
+//   return fetch(
+//     'https://api.themoviedb.org/3/trending/movie/day?api_key=58fde9f9a3392c3dbee86a1f2142354e'
+//   ).then(res => res.json());
+// }
 
 async function getFilmInfo() {
   try {

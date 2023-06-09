@@ -1,5 +1,5 @@
-import defaultImg from '../images/default.jpg';
-const imageSrc = defaultImg;
+import defaultImgTr from '../images/default.jpg';
+const imageSrc = defaultImgTr;
 let modalOpen = false;
 
 function playTrailer(movieId) {
