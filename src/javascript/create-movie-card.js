@@ -1,5 +1,5 @@
 import { refs } from './catalog/components/refs';
-import defaultImg from '../images/default.jpg';
+import defaultImg from '../images/default-bgimage.jpg';
 import starsRating from './stars-rating';
 import { validateGenres } from './weekly-trends-genres';
 import { openModalAboutFilm } from './movieModal';
