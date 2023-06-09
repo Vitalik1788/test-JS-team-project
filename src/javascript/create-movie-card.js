@@ -6,7 +6,7 @@ import { openModalAboutFilm } from './movieModal';
 
 const imgDefaul = defaultImg;
 
-export async function createMovieCard(data) {
+export function createMovieCard(data) {
   const genresData = JSON.parse(localStorage.getItem('genres'));
 
   const markupPromises = data.results.map(data => {
@@ -46,7 +46,7 @@ export async function createMovieCard(data) {
       </li>`;
   });
 
-  const markup = await Promise.all(markupPromises);
+  const markup = Promise.all(markupPromises);
   refs.catalogList.innerHTML = markup.join(''); 
 }
 const filmList = document.querySelector('.listListener');
